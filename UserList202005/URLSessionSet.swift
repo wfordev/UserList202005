@@ -13,6 +13,7 @@ class URLSessionSet: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSe
     var error:Error!
     var responseData:Data = Data()
     var response:URLResponse!
+    static let token = "1076288fad0e115e63baa3ebc7b37969dce03dba"
     
     enum ReturnType:Int{
         case IMAGE, ARRAY, DICT
@@ -26,6 +27,7 @@ class URLSessionSet: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSe
         let request = NSMutableURLRequest(url: URL(string: urlString)!)
         request.httpMethod = "GET"
         request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+        request.setValue("token " + token, forHTTPHeaderField: "Authorization")
         var response:URLResponse!
         var error:Error!
         var json:Any?
